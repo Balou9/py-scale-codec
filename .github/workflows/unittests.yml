@@ -2,10 +2,7 @@ name: Run unit tests
 
 on:
   push:
-    branches: [master, develop, v1.0, v0.11]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [master, develop, v1.0, v0.11]
+    branches: [testcov]
 
 jobs:
   build:
@@ -34,5 +31,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pip install pytest
-        pytest
+        pip install pytest pytest-cov
+        pytest --cov=pyScaleCodec test/
